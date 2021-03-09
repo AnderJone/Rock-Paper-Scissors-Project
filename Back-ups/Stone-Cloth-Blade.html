@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" type = "text/css" href = "Stone-Cloth-Blade.css">
+    
+</head>
+<body>
+    <h1 class="Title">Stone, Cloth, Blade<span style= "font-family: New Century Schoolbook, TeX Gyre Schola, serif; " >!</span></h1>
+
+    <div id="animation">
+        <img id="imgback"src="Pixel Art For Rock Paper Scissors Project.png">
+        <canvas id="cananimWiz" width="690" height="345">A pity your browser will not allow you to see such a pristine animation as I have created.</canvas>
+        <canvas id="cananimAdv" width="690" height="345"></canvas>
+    </div>
+
+    <div class="TextWindow" >
+        <p></p>
+    </div>
+
+    <div class="choices">
+        <button class="choice" id="stone" data-selection='rock'>
+            <img src="Stone.png" alt="Stone" >
+        </button>
+        <button class="choice" id="cloth" data-selection='cloth'>
+            <img src="Cloth.png" alt="Cloth">
+        </button>
+        <button class="choice" id="blade" data-selection='blade'>
+            <img src="Blade.png" alt="Blade">
+        </button>
+    </div>
+
+    <script src="Wizard.js"></script>
+    <script src="Stone-Cloth-Blade.js"></script>
+<!--
+BELOW IS THE JAVASCRIPT CODE FOR THE GAME
+-->
+    <script>
+        let advScore = 0;
+        let wizScore = 0;
+        const text = document.querySelector('.TextWindow > p')
+        const stone = document.getElementById('stone')
+        const cloth = document.getElementById('cloth')
+        const blade = document.getElementById('blade')
+        
+        function getWizChoice() {
+            const choices = ['stone', 'cloth', 'blade'];
+            const randomNum = Math.floor(Math.random() * 3);
+            return choices[randomNum];
+        }
+
+        text.innerHTML = "Good Morrow Humble Adventurer! I see you're looking a little worse for wear.";
+        text.innerHTML = "Fear Not! This path leads to a village where you can rest your sorry self.";
+        text.innerHTML = "However, this dense wood is lonesome and does not make for good conversation.";
+        text.innerHTML = "So I offer a friendly match of... Stone, Cloth, Blade!";
+        text.innerHTML = "If you are the first to win five games, you may continue on your way."
+        text.innerHTML = "I'll even let you try as many times as you like."
+        text.innerHTML = "Ready? Choose your Weapon!"
+
+
+
+        function win() {
+            advScore++;
+            console.log('advWin ' + advScore)
+            text.innerHTML = "Alas! You win this round! " + "I believe you have " + advScore + " and I have " + wizScore + "."
+            checkVictory()
+        }
+        function lose() {
+            wizScore++;
+            console.log('wizwin ' + wizScore);
+            text.innerHTML = "HEH! I win! " + "I believe you have " + advScore + " and I have " + wizScore + "."
+            checkVictory()
+        }
+        function draw() {
+            console.log("A tie!")
+            text.innerHTML = "A tie! Play again then!"
+        }
+
+        function advVictory() {
+            text.innerHTML = "Oh Drat! Well Played. Farewell Adventurer!"
+            setInterval(animateAdvWalk, 8000/30);
+            animateAdvWalk();
+            advScore = 0;
+            wizScore = 0;
+        }
+
+        function wizVictory() {
+            text.innerHTML = "Woot! I win! No worries though Adventurer. Care to play again?"
+            advScore = 0;
+            wizScore = 0;
+        }
+
+        
+        function checkVictory() {
+            if (advScore === 5) {
+                advVictory()
+            } else if (wizScore === 5) {
+                wizVictory()
+            } else {
+                null
+            }
+        }
+
+
+        function game(advChoice) {
+            const wizChoice = getWizChoice();
+            switch (advChoice + wizChoice) {
+                case 'stoneblade':
+                case 'clothstone':
+                case 'bladecloth':
+                    win();
+                    break;
+                case 'stonecloth':
+                case 'clothblade':
+                case 'bladestone':
+                    lose();
+                    break;
+                case 'stonestone':
+                case 'clothcloth':
+                case 'bladeblade':
+                    draw();
+            }
+        }
+
+        stone.addEventListener('click', function() {
+            game('stone')
+        })
+        cloth.addEventListener('click', function() {
+            game('cloth')
+        })
+        blade.addEventListener('click', function() {
+            game('blade')
+        })
+
+
+    </script>
+</body>
+</html>
