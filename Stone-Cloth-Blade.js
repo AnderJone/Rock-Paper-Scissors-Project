@@ -23,7 +23,7 @@ setTimeout(() => {
     stone.disabled = false;
     cloth.disabled = false;
     blade.disabled = false;  
-}, 18000);
+}, 27000);
 
 
 let wizIntro = [ 
