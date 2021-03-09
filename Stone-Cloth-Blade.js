@@ -45,7 +45,7 @@ introInterval = setInterval(() => {
         return "Ready? Choose your weapon!";
     }
 
-}, 3000)
+}, 4500)
 
 function win() {
     advScore++;
