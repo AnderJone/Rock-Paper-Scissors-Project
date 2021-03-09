@@ -1,2 +1,3 @@
 # Rock-Paper-Scissors-Project-tOP
  
+I learned a lot, especially not to bite off more than you can chew...
