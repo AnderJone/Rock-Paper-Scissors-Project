@@ -23,7 +23,7 @@ setTimeout(() => {
     stone.disabled = false;
     cloth.disabled = false;
     blade.disabled = false;  
-}, 27000);
+}, 24000);
 
 
 let wizIntro = [ 
@@ -45,7 +45,7 @@ introInterval = setInterval(() => {
         return "Ready? Choose your weapon!";
     }
 
-}, 4500)
+}, 4000)
 
 function win() {
     advScore++;
